@@ -36,7 +36,13 @@ def string_mt5_timeframe(timeframe):
 
 
 
-def get_meta_trader_date(start_date=None, end_date=None, pair='EURUSD',timeframe='D1',timezone="Etc/UTC"):
+def get_meta_trader_date(start_date=None, end_date=None, pair='EURUSD',timeframe='D1',timezone="Etc/UTC",
+    renamedic = {
+        'open' : 'Open' ,
+        'high' : 'High' ,
+        'low'  : 'Low' ,
+        'close': 'Close'}):
+
     from MetaTrader5 import mt5
     from datetime import datetime,timedelta
     import pytz
@@ -57,4 +63,6 @@ def get_meta_trader_date(start_date=None, end_date=None, pair='EURUSD',timeframe
     rates_frame['time']=pd.to_datetime(rates_frame['time'], unit='s')
     print("received date from {} to {}".format(min(rates_frame['time']) , max(rates_frame['time'])))
     print("length is {}".format(len(rates_frame)))
+
+
     return rates_frame
